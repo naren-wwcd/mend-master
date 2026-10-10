@@ -1,0 +1,75 @@
+.auth { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+
+.auth-brand {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column; justify-content: flex-start; gap: clamp(2rem, 9vh, 5.5rem);
+  margin: 10px; padding: clamp(1.5rem, 3.6vw, 3.25rem);
+  border-radius: 8px; background: #070d18; color: var(--ink);
+}
+.auth-brand .logo { color: var(--ink); }
+.auth-brand .eyebrow { color: var(--muted); }
+.auth-brand h2 { margin: 0.9rem 0 1.5rem; font-size: clamp(2.1rem, min(4.2vw, 7.5vh), 3.9rem); max-width: 12ch; }
+.auth-brand ul { display: grid; gap: 0.6rem; margin: 0; padding: 0; list-style: none; font-size: 0.95rem; }
+.auth-brand li { display: flex; align-items: center; gap: 0.7rem; color: var(--ink); }
+.auth-brand li::before { content: ""; width: 14px; height: 2px; background: var(--accent); flex: none; }
+.auth-brand-copy > * { animation: rise-in 0.7s var(--ease) both; }
+.auth-brand-copy > :nth-child(2) { animation-delay: 80ms; }
+.auth-brand-copy > :nth-child(3) { animation-delay: 160ms; }
+.auth-waves {
+  position: absolute; z-index: -1; left: 0; bottom: 0; width: 1800px; height: 22%;
+  fill: none; stroke: rgb(148 176 211 / 0.12); stroke-width: 10;
+  animation: wave-flow 9s linear infinite;
+}
+.auth-waves .accent { stroke: rgb(232 98 44 / 0.55); }
+@keyframes wave-flow { to { transform: translateX(-200px); } }
+
+.auth-main { display: grid; place-items: center; padding: clamp(1.25rem, 4vw, 3rem); }
+.auth-card { width: min(430px, 100%); display: grid; gap: 1.25rem; animation: rise-in 0.6s var(--ease) both; }
+.auth-form.shake { animation: shake 0.4s ease; }
+.auth-back {
+  width: fit-content; color: var(--muted); text-decoration: none;
+  font: 500 0.72rem var(--font-mono); letter-spacing: 0.04em; transition: color 0.2s, transform 0.2s var(--ease);
+}
+.auth-back:hover { color: var(--ink); transform: translateX(-3px); }
+.auth-title { margin: 0; font: 800 1.7rem/1.05 var(--font-display); letter-spacing: -0.02em; }
+
+.tabs {
+  position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+  padding: 4px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper);
+}
+.tab {
+  position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  padding: 0.55rem 1rem; border-radius: 999px; color: var(--ink); cursor: pointer;
+  font: 700 0.8rem var(--font-body); transition: color 0.25s;
+}
+.tab[aria-selected="true"] { color: var(--ink); }
+.tab-pill { position: absolute; inset: 0; z-index: -1; border-radius: 999px; background: #172640; }
+
+.auth-form { display: grid; gap: 0.9rem; }
+.auth-fields { display: grid; gap: 0.9rem; animation: rise-in 0.35s var(--ease) both; }
+
+.plan-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin: 0; padding: 0; border: 0; min-width: 0; }
+.plan-picker legend { padding: 0; margin-bottom: 0.4rem; font: 600 0.78rem var(--font-body); }
+.plan-radio { position: relative; cursor: pointer; }
+.plan-radio input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.plan-radio > span {
+  display: grid; gap: 0.15rem; padding: 0.6rem 0.65rem; border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius); transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.16s var(--ease);
+}
+.plan-radio b { font-size: 0.8rem; }
+.plan-radio small { font: 500 0.66rem var(--font-mono); color: var(--muted); }
+.plan-radio:hover > span { border-color: var(--ink); transform: translateY(-1px); }
+.plan-radio input:checked + span { border-color: var(--accent); background: var(--paper-2); box-shadow: 3px 3px 0 var(--accent); }
+.plan-radio input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.form-error { min-height: 1.2em; margin: 0; color: var(--bad); font: 600 0.8rem var(--font-body); }
+
+@media (max-width: 800px) {
+  .auth { grid-template-columns: 1fr; align-content: start; }
+  .auth-brand { margin: 0; border-radius: 0; padding: 1rem 1.1rem; flex-direction: row; align-items: center; gap: 1rem; }
+  .auth-brand-copy, .auth-waves { display: none; }
+  .auth-main { padding: 1.5rem 1.1rem 2.5rem; place-items: start center; }
+}
+@media (max-width: 380px) {
+  .plan-picker { grid-template-columns: 1fr; }
+}
